@@ -103,7 +103,7 @@ def init(path, apps_path=None, no_procfile=False, no_backups=False, no_auto_upda
 		clone_apps_from(bench_path=path, clone_from=clone_from, update_app=not clone_without_update)
 	else:
 		if not frappe_path:
-			frappe_path = 'https://github.com/frappe/frappe.git'
+			frappe_path = 'https://github.com/jimmyrianto/frappe.git'
 
 		get_app(frappe_path, branch=frappe_branch, bench_path=path, skip_assets=True, verbose=verbose)
 
@@ -210,7 +210,7 @@ def setup_env(bench_path='.', python = 'python3'):
 
 	exec_cmd('virtualenv -q {} -p {}'.format('env', python), cwd=bench_path)
 	exec_cmd('{} -q install -U pip wheel six'.format(pip), cwd=bench_path)
-	exec_cmd('{} -q install -e git+https://github.com/frappe/python-pdfkit.git#egg=pdfkit'.format(pip), cwd=bench_path)
+	exec_cmd('{} -q install -e git+https://github.com/jimmyrianto/python-pdfkit.git#egg=pdfkit'.format(pip), cwd=bench_path)
 
 def setup_socketio(bench_path='.'):
 	exec_cmd("npm install socket.io redis express superagent cookie babel-core less chokidar \
@@ -857,7 +857,7 @@ def setup_fonts():
 	if os.path.exists('/etc/fonts_backup'):
 		return
 
-	exec_cmd("git clone https://github.com/frappe/fonts.git", cwd='/tmp')
+	exec_cmd("git clone https://github.com/jimmyrianto/fonts.git", cwd='/tmp')
 	os.rename('/etc/fonts', '/etc/fonts_backup')
 	os.rename('/usr/share/fonts', '/usr/share/fonts_backup')
 	os.rename(os.path.join(fonts_path, 'etc_fonts'), '/etc/fonts')

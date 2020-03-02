@@ -101,7 +101,7 @@ def get_app(git_url, branch=None, bench_path='.', skip_assets=False, verbose=Fal
 		from urllib.parse import urljoin
 
 	if not check_url(git_url, raise_err = False):
-		orgs = ['frappe', 'erpnext']
+		orgs = ['jimmyrianto', 'erpnext']
 		for org in orgs:
 			url = 'https://api.github.com/repos/{org}/{app}'.format(org = org, app = git_url)
 			res = requests.get(url)

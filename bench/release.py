@@ -306,7 +306,7 @@ def push_release(repo_path, from_branch, to_branch, remote='upstream'):
 
 	print(g.push(remote, *args))
 
-def create_github_release(repo_path, tag_name, message, remote='upstream', owner='frappe', repo_name=None,
+def create_github_release(repo_path, tag_name, message, remote='upstream', owner='jimmyrianto', repo_name=None,
 		gh_username=None, gh_password=None, prerelease=False):
 
 	print('creating release on github')
