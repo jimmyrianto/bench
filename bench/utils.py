@@ -1,6 +1,7 @@
 import errno, glob, grp, itertools, json, logging, multiprocessing, os, platform, pwd, re, select, shutil, site, subprocess, sys
 from datetime import datetime
 from distutils.spawn import find_executable
+import distro as ds
 
 import requests
 import semantic_version
@@ -270,7 +271,7 @@ def add_to_crontab(line):
 	line = str.encode(line)
 	if not line in current_crontab:
 		cmd = ["crontab"]
-		if platform.system() == 'FreeBSD' or platform.linux_distribution()[0]=="arch":
+		if platform.system() == 'FreeBSD' or ds.linux_distribution()[0].lower() == "arch": #platform.linux_distribution()[0]=="arch":
 			cmd = ["crontab", "-"]
 		s = subprocess.Popen(cmd, stdin=subprocess.PIPE)
 		s.stdin.write(current_crontab)
@@ -828,7 +829,8 @@ def validate_pillow_dependencies(bench_path, requirements):
 		exec_cmd("{pip} install Pillow".format(pip=pip))
 
 	except CommandFailedError:
-		distro = platform.linux_distribution()
+		distro = ds.linux_distribution()
+		# distro = platform.linux_distribution()
 		distro_name = distro[0].lower()
 		if "centos" in distro_name or "fedora" in distro_name:
 			print("Please install these dependencies using the command:")
